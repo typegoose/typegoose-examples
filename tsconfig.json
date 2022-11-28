@@ -25,8 +25,8 @@
     "**/*.ts",
   ],
   "exclude": [
-    "**/*/node_modules/**/*",
-    "**/*/build/**/*",
-    "**/*/lib/**/*"
+    "**/node_modules",
+    "**/build",
+    "**/lib"
   ]
 }
