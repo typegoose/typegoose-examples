@@ -1,0 +1,12 @@
+{
+  "name": "basic",
+  "private": true,
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "description": "Basic Structure for a Workspace example",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "jest -c jest.config.ts"
+  }
+}

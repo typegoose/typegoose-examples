@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "lib": [
+      "esnext"
+    ],
+    "removeComments": false,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "newLine": "LF",
+    "declaration": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "allowJs": false,
+    "outDir": "build",
+    "inlineSourceMap": true,
+    "importHelpers": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true
+  },
+  "include": [
+    "*.js",
+    ".*.js",
+    "**/*.ts",
+  ],
+  "exclude": [
+    "**/*/node_modules/**/*",
+  ]
+}
