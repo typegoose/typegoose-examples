@@ -23,8 +23,8 @@ enum EConfig {
 
 const env: NodeJS.ProcessEnv = process.env; // just to write less
 
-let path: string = env.CONFIG ?? './test/config.json';
-path = fs.existsSync(path) ? path : './test/config_default.json';
+let path: string = env.CONFIG ?? './config.json';
+path = fs.existsSync(path) ? path : './config_default.json';
 
 if (!fs.existsSync(path)) {
   fs.writeFileSync(

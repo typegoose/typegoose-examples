@@ -32,8 +32,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "lint": "eslint -c ./.eslintrc.js \"./**/*.{js,ts}\"",
-    "test": "jest",
-    "test:coverage": "jest --collectCoverage",
+    "test": "jest -c jest.all.config.ts",
     "clean": "rimraf lib .tsbuildinfo coverage doc build",
     "prepare": "husky install"
   },
