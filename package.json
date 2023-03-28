@@ -37,8 +37,8 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@typegoose/typegoose": "^9.13.1",
+    "@typegoose/typegoose": "^10.3.4",
     "mongodb-memory-server": "^8.12.1",
-    "mongoose": "^6.7.3"
+    "mongoose": "^6.10.4"
   }
 }
