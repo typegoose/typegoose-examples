@@ -53,3 +53,12 @@ export async function disconnect(): Promise<void> {
 
   return;
 }
+
+/**
+ * Clear all data for the current connection
+ * @param con Optionally specify which connection to use
+ */
+export async function clearData(con?: mongoose.Connection): Promise<void> {
+  con = con ?? mongoose.connection;
+  await con.dropDatabase();
+}
