@@ -1,13 +1,24 @@
+import { execSync } from 'child_process';
+import * as path from 'path';
 import * as fs from 'fs';
 
+/**
+ * All Properties the config has to set
+ */
 interface IConfig {
+  /** Specify whether to use a in-memory (mongodb-memory-server) instance or the defined values for connecting to a specific instance */
   Memory: boolean;
+  /** Which database name to use for all tests */
   DataBase: string;
+  /** Specify which port to use for external instances */
   Port: number;
+  /** Specify Authentication for external instances */
   Auth: IAuth;
+  /** Specify which ip to use for external instances */
   IP: string;
 }
 
+/** Specify Authentication for external instances */
 interface IAuth {
   User: string;
   Passwd: string;
@@ -21,14 +32,24 @@ enum EConfig {
   MONGODB_AUTH = 'You should activate & use MongoDB Authentication!',
 }
 
-const env: NodeJS.ProcessEnv = process.env; // just to write less
+/** Alias for "process.env" */
+const env: NodeJS.ProcessEnv = process.env;
 
-let path: string = env.CONFIG ?? './config.json';
-path = fs.existsSync(path) ? path : './config_default.json';
+/** Get the project root from git */
+const projectRoot = execSync('git rev-parse --show-toplevel').toString().trimEnd();
 
-if (!fs.existsSync(path)) {
+// warn if the path gotten from git does not actually exist (it should exist because it is a git repository)
+if (!fs.existsSync(projectRoot)) {
+  console.error(`Could not determine project root from git, found: "${projectRoot}"`);
+}
+
+/** Path to the config to use */
+const configPath: string = env.CONFIG ?? path.join(projectRoot, './config.json');
+
+// write a default config
+if (!fs.existsSync(configPath)) {
   fs.writeFileSync(
-    path,
+    configPath,
     JSON.stringify({
       Memory: true,
       DataBase: 'typegooseTest',
@@ -43,9 +64,14 @@ if (!fs.existsSync(path)) {
   );
 }
 
-const configRAW: Readonly<IConfig> = JSON.parse(fs.readFileSync(path).toString());
+/** The config read raw from the path and parsed into json */
+const configRAW: Readonly<IConfig> = JSON.parse(fs.readFileSync(configPath).toString());
 
-// ENV || CONFIG-FILE || DEFAULT
+/**
+ * The actual final config, properly combined
+ * Priorities:
+ * ENV || CONFIG-FILE || DEFAULT
+ */
 const configFINAL: Readonly<IConfig> = {
   Memory: env.C_USE_IN_MEMORY !== undefined || (typeof configRAW.Memory === 'boolean' ? configRAW.Memory : true),
   DataBase: env.C_DATABASE ?? configRAW?.DataBase ?? 'typegooseTest',
@@ -58,21 +84,22 @@ const configFINAL: Readonly<IConfig> = {
   IP: env.C_IP ?? configRAW.IP ?? 'localhost',
 };
 
-/** Small callback for the tests below */
-function cb(text: string): void {
+/** Small callback to reduce code size and not repeat yourself */
+function exitProcess(text: string): void {
   console.error(text);
   process.exit(-1);
 }
 
+// sanity check that all values properly exist when not using in-memory
 if (!configFINAL.Memory) {
   if (!configFINAL.IP) {
-    cb(EConfig.MONGODB_IP);
+    exitProcess(EConfig.MONGODB_IP);
   }
   if (!configFINAL.DataBase) {
-    cb(EConfig.MONGODB_DB);
+    exitProcess(EConfig.MONGODB_DB);
   }
   if (!configFINAL.Port) {
-    cb(EConfig.MONGODB_PORT);
+    exitProcess(EConfig.MONGODB_PORT);
   }
 }
 
