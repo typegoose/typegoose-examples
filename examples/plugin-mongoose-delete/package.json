@@ -1,0 +1,16 @@
+{
+  "name": "plugin-mongoose-delete",
+  "private": true,
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "description": "Showcasing usage of mongoose-delete",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "jest -c jest.config.ts"
+  },
+  "dependencies": {
+    "mongoose-delete": "^0.5.4",
+    "@types/mongoose-delete": "^0.5.9"
+  }
+}
