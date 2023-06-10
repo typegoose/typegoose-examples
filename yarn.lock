@@ -1593,6 +1593,14 @@
   resolved "https://registry.yarnpkg.com/@tsconfig/node16/-/node16-1.0.3.tgz#472eaab5f15c1ffdd7f8628bd4c4f753995ec79e"
   integrity sha512-yOlFc+7UtL/89t2ZhjPvvB/DeAr3r+Dq58IgzsFkOAvVC6NMJXmCGjbptdXdR9qsX7pKcTL+s87FtYREi2dEEQ==
 
+"@typegoose/auto-increment@^3.2.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@typegoose/auto-increment/-/auto-increment-3.2.0.tgz#2ebb065d8dea52cbdf1fb205ff428425e41fa061"
+  integrity sha512-2rpgvvyiKDT2R4AdGhxhH3HK/G02OE+FQ5EfdP+SHzJ9lEvhoK4FdLU3/Fas68kqnrhYqQenq7B6QuH5yno94w==
+  dependencies:
+    loglevel "^1.8.1"
+    tslib "^2.5.2"
+
 "@typegoose/typegoose@^11.2.0":
   version "11.2.0"
   resolved "https://registry.yarnpkg.com/@typegoose/typegoose/-/typegoose-11.2.0.tgz#70f2e2cd2f0205d92a3b547d9871cb153dcf6023"
