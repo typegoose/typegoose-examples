@@ -19,21 +19,24 @@ yarn run test
 
 ## Add a new example
 
-Thanks to yarn and jest, the act of adding a new example is simple:
+Adding new examples is simple thanks to the boilerplate [`basic`](./examples/basic/) example, just clone it and modify the clone:
 
 ```sh
 # Starting point is in the root of the project (where the current README exists)
 cd examples/
-cp -R basic ./your-new-example
+cp -R ./basic ./your-new-example
 cd your-new-example
 
 # Apply all modifications you want to the new example
 
 # Verify your example is working
+# while being in the example, only that example's tests are run
 yarn run test
 
 # No extra addition anywhere else is needed
 # And root-level testing also works out-of-the-box
 cd ../../
 yarn run test
+# or while still being in the example
+yarn --cwd ../../ test
 ```
