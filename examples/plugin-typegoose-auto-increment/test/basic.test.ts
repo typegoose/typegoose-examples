@@ -13,7 +13,8 @@ describe('Plugin @typegoose/auto-increment', () => {
   type Helper<V> = V & { [key: string]: any };
 
   it('should create users with incrementing signup-id and store modified amount', async () => {
-    const docs = await UserModel.create([{ name: 'Luke' }, { name: 'Joe' }, { name: 'Linus' }]);
+    // using "ordered" to ensure the insertion order is the definition order
+    const docs = await UserModel.create([{ name: 'Luke' }, { name: 'Joe' }, { name: 'Linus' }], { ordered: true });
 
     expect(docs[0]).toMatchObject<Helper<User>>({
       name: 'Luke',
