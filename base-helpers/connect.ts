@@ -60,5 +60,6 @@ export async function disconnect(): Promise<void> {
  */
 export async function clearData(con?: mongoose.Connection): Promise<void> {
   con = con ?? mongoose.connection;
-  await con.dropDatabase();
+
+  await Promise.all(Object.values(con.models).map((v) => v.collection.drop()));
 }
