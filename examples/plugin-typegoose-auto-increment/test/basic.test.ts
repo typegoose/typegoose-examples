@@ -1,11 +1,6 @@
 import { User, UserModel } from '../src/models';
-import { clearData } from './utils/connect';
 
 describe('Plugin @typegoose/auto-increment', () => {
-  beforeAll(async () => {
-    await clearData();
-  });
-
   beforeEach(async () => {
     await UserModel.deleteMany();
   });

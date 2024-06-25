@@ -1,11 +1,6 @@
 import { UserModel } from '../src/models';
-import { clearData } from './utils/connect';
 
 describe('Plugin mongoose-findorcreate', () => {
-  beforeAll(async () => {
-    await clearData();
-  });
-
   beforeEach(async () => {
     await UserModel.deleteMany();
   });
