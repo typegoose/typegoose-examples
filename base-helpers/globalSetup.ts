@@ -1,6 +1,6 @@
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import { config } from './config';
-import { connect } from './connect';
+// import { connect } from './connect';
 
 export = async function globalSetup() {
   if (config.Memory) {
@@ -13,7 +13,7 @@ export = async function globalSetup() {
     process.env.MONGO_URI = `mongodb://${config.IP}:${config.Port}`;
   }
 
-  const connection = await connect({ dbName: config.DataBase });
-  await connection.db.dropDatabase();
-  await connection.close();
+  // const connection = await connect({ dbName: config.DataBase });
+  // await connection.db.dropDatabase();
+  // await connection.close();
 };

@@ -31,8 +31,11 @@ export async function connect(extraConfig: ExtraConnectionConfig = {}): Promise<
     }
   }
 
+  // ensure all test suites get a different database when not using a explicit database
+  const dbName = extraConfig.dbName ?? config.DataBase + process.env.JEST_WORKER_ID;
+
   // to not duplicate code
-  const connectionString = `${process.env.MONGO_URI}/${extraConfig.dbName ?? config.DataBase}`;
+  const connectionString = `${process.env.MONGO_URI}/${dbName}`;
 
   if (extraConfig.createNewConnection) {
     connection = await mongooseInstance.createConnection(connectionString, options).asPromise();
