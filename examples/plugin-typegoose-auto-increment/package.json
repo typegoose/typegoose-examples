@@ -10,6 +10,6 @@
     "test": "jest -c jest.config.ts"
   },
   "dependencies": {
-    "@typegoose/auto-increment": "^3.2.0"
+    "@typegoose/auto-increment": "^4.4.0"
   }
 }
