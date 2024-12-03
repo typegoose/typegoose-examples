@@ -38,6 +38,6 @@
   "dependencies": {
     "@typegoose/typegoose": "^12.5.0",
     "mongodb-memory-server": "^9.4.0",
-    "mongoose": "^8.4.3"
+    "mongoose": "^8.8.3"
   }
 }
